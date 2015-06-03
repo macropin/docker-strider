@@ -3,9 +3,10 @@
 Possibly the best `Dockerfile` for Strider-CD
 
 - Uses `node` base image
-- Doesn't run as root.
-- Thin Container. Uses linked MongoDB and SMTP services
+- Doesn't run as root
+- Thin Container. Uses linked MongoDB and SMTP containers for those services
 - Installs latest Strider-CD cleanly from Git sources.
+- Supports installing and upgrading plugins from the web UI
 
 ## Environment variables
 

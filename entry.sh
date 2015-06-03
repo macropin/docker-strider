@@ -17,11 +17,19 @@ if [ -z "$DB_URI" ]; then
     export DB_URI="mongodb://${MONGO_PORT_27017_TCP_ADDR-localhost}:${MONGO_PORT_27017_TCP_PORT-27017}/strider"
 fi
 
+# Update npm cache if no modules exist
+# TODO: make this an incremental update so that upgrades are handled
+if [ ! -d "/data/node_modules" ]; then
+    mkdir -p /data/node_modules
+    cp -ar /opt/strider/node_modules.cache/* /data/node_modules/
+fi
+
 # Create admin user if variables defined
 if [ ! -z "$STRIDER_ADMIN_EMAIL" -a ! -z "$STRIDER_ADMIN_PASSWORD" ]; then
+    echo "Running addUser"
     strider addUser --email $STRIDER_ADMIN_EMAIL --password $STRIDER_ADMIN_PASSWORD --admin true
     echo "Created Admin User: $STRIDER_ADMIN_EMAIL, Password: $STRIDER_ADMIN_PASSWORD"
 fi
 
-echo "Execing command $@"
+echo "Exec'ing command $@"
 exec "$@"
