@@ -1,7 +1,13 @@
-# docker-strider
+# Strider-CD Docker 
+
+Possibly the best `Dockerfile` for Strider-CD
+
+- Uses `node` base image
+- Doesn't run as root.
+- Thin Container. Uses linked MongoDB and SMTP services
+- Installs latest Strider-CD cleanly from Git sources.
 
 ## Environment variables
-
 
 These are the base Strider ones
 ```
