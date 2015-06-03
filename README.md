@@ -4,7 +4,7 @@
 
 
 These are the base Strider ones
-``
+```
 SERVER_NAME - Required; Address at which server will be accessible on the Internet. E.g. https://strider.example.com (note: no trailing slash)
 HOST - Host where strider listens, optional (defaults to 0.0.0.0).
 PORT - Port that strider runs on, optional (defaults to 3000).
@@ -16,18 +16,13 @@ SMTP_PORT - SMTP server port e.g. 587 (default)
 SMTP_USER - SMTP auth username e.g. "myuser"
 SMTP_PASS - SMTP auth password e.g. "supersecret"
 SMTP_FROM - Default FROM address e.g. "Strider noreply@stridercd.com" (default)
-``
+```
 
 Our docker initial config ones. If defined they'll be used to create a admin account:
-``
+```
 STRIDER_ADMIN_EMAIL
 STRIDER_ADMIN_PASSWORD
-``
-
-## To Do
-
-- Don't run as root
-- Add volumes for local data storage / plugin installation
+```
 
 ## Status
 
