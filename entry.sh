@@ -17,9 +17,6 @@ if [ -z "$DB_URI" ]; then
     export DB_URI="mongodb://${MONGO_PORT_27017_TCP_ADDR-localhost}:${MONGO_PORT_27017_TCP_PORT-27017}/strider"
 fi
 
-# Add Strider to the path
-#export PATH=/opt/strider/bin:$PATH
-
 # Create admin user if variables defined
 if [ ! -z "$STRIDER_ADMIN_EMAIL" -a ! -z "$STRIDER_ADMIN_PASSWORD" ]; then
     strider addUser --email $STRIDER_ADMIN_EMAIL --password $STRIDER_ADMIN_PASSWORD --admin true
@@ -28,4 +25,3 @@ fi
 
 echo "Execing command $@"
 exec "$@"
-
