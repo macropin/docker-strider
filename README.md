@@ -10,7 +10,7 @@ Possibly the best `Dockerfile` for Strider-CD
 
 ## Environment variables
 
-These are the base Strider ones
+These are the base Strider variables:
 ```
 SERVER_NAME - Required; Address at which server will be accessible on the Internet. E.g. https://strider.example.com (note: no trailing slash)
 HOST - Host where strider listens, optional (defaults to 0.0.0.0).
@@ -25,7 +25,7 @@ SMTP_PASS - SMTP auth password e.g. "supersecret"
 SMTP_FROM - Default FROM address e.g. "Strider noreply@stridercd.com" (default)
 ```
 
-Our docker initial config ones. If defined they'll be used to create a admin account:
+Our docker initial config variables. If defined they will be used to create an admin account:
 ```
 STRIDER_ADMIN_EMAIL
 STRIDER_ADMIN_PASSWORD
