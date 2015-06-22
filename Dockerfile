@@ -5,6 +5,7 @@ MAINTAINER Andrew Cutler <andrew@panubo.io>
 EXPOSE 3000
 
 ENV STRIDER_GIT_SRC=https://github.com/Strider-CD/strider.git
+ENV NODE_ENV production
 
 RUN useradd --comment "Strider CD" --home /data strider && mkdir -p /data && chown strider:strider /data
 VOLUME ["/data"]
