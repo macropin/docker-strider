@@ -15,6 +15,7 @@ set -e
 # Create a DB_URI from linked container variables above
 if [ -z "$DB_URI" ]; then
     export DB_URI="mongodb://${MONGO_PORT_27017_TCP_ADDR-localhost}:${MONGO_PORT_27017_TCP_PORT-27017}/strider"
+    echo 'export DB_URI="mongodb://${MONGO_PORT_27017_TCP_ADDR-localhost}:${MONGO_PORT_27017_TCP_PORT-27017}/strider"' > $HOME/.bashrc
 fi
 
 # Update npm cache if no modules exist
