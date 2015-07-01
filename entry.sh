@@ -22,7 +22,7 @@ fi
 # TODO: make this an incremental update so that upgrades are handled
 if [ ! -d "/data/node_modules" ]; then
     mkdir -p /data/node_modules
-    cp -ar /opt/strider/node_modules.cache/* /data/node_modules/
+    cp -r --preserve=mode,timestamps,links,xattr /opt/strider/node_modules.cache/* /data/node_modules/
 fi
 
 # Create admin user if variables defined
