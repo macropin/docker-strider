@@ -16,11 +16,13 @@ set -e
 if [ -z "$DB_URI" ]; then
     export DB_URI="mongodb://${MONGO_PORT_27017_TCP_ADDR-localhost}:${MONGO_PORT_27017_TCP_PORT-27017}/strider"
     echo 'export DB_URI="mongodb://${MONGO_PORT_27017_TCP_ADDR-localhost}:${MONGO_PORT_27017_TCP_PORT-27017}/strider"' > $HOME/.bashrc
+    echo "Set DB_URI=$DB_URI"
 fi
 
 # Update npm cache if no modules exist
 # TODO: make this an incremental update so that upgrades are handled
 if [ ! -d "/data/node_modules" ]; then
+    echo 'Copying node_modules...'
     mkdir -p /data/node_modules
     cp -r --preserve=mode,timestamps,links,xattr /opt/strider/node_modules.cache/* /data/node_modules/
 fi
