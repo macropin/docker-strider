@@ -11,8 +11,12 @@ RUN useradd --comment "Strider CD" --home /data strider && mkdir -p /data && cho
 VOLUME ["/data"]
 
 RUN cd /opt && \
-    git clone $STRIDER_GIT_SRC && \
-    cd strider && npm install && \
+    # Checkout into /opt/strider
+    git clone $STRIDER_GIT_SRC && cd strider && \
+    # Install NPM deps
+    npm install && \
+    # Generate API Docs
+    npm install apidoc && npm run gendocs && \
     # Create link to strider home dir so the modules can be used as a cache
     mv node_modules node_modules.cache && ln -s /data/node_modules node_modules && \
     # Allow strider user to update .restart file
