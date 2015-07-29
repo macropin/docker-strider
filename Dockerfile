@@ -29,6 +29,5 @@ ENV PATH /opt/strider/bin:$PATH
 
 COPY entry.sh /
 USER strider
-RUN mkdir -p /tmp/strider
 ENTRYPOINT ["/entry.sh"]
 CMD ["strider"]
