@@ -5,6 +5,7 @@ MAINTAINER Andrew Cutler <andrew@panubo.io>
 EXPOSE 3000
 
 ENV STRIDER_GIT_SRC=https://github.com/Strider-CD/strider.git
+ENV STRIDER_VERSION=v1.7.0
 ENV NODE_ENV production
 
 RUN useradd --comment "Strider CD" --home /data strider && mkdir -p /data && chown strider:strider /data
@@ -12,7 +13,7 @@ VOLUME ["/data"]
 
 RUN cd /opt && \
     # Checkout into /opt/strider
-    git clone $STRIDER_GIT_SRC && cd strider && \
+    git clone $STRIDER_GIT_SRC && cd strider && git checkout tags/$STRIDER_VERSION \
     # Install NPM deps
     npm install && \
     # Generate API Docs
