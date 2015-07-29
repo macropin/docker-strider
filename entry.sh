@@ -33,5 +33,13 @@ if [ ! -z "$STRIDER_ADMIN_EMAIL" -a ! -z "$STRIDER_ADMIN_PASSWORD" ]; then
     echo "$(basename $0) >> Created Admin User: $STRIDER_ADMIN_EMAIL, Password: $STRIDER_ADMIN_PASSWORD"
 fi
 
+# Make .strider ephemeral. Link to /tmp to use local host io.
+mkdir -p /tmp/strider
+if [ ! -L "/data/.strider" ]; then
+    mv /data/.strider/* /tmp/strider/
+    rmdir /data/.strider
+    ln -s /data/.strider /tmp/strider
+fi
+
 echo "Exec'ing command $@"
 exec "$@"
