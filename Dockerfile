@@ -13,7 +13,7 @@ VOLUME ["/data"]
 
 RUN cd /opt && \
     # Checkout into /opt/strider
-    git clone $STRIDER_GIT_SRC && cd strider && git checkout tags/$STRIDER_VERSION \
+    git clone $STRIDER_GIT_SRC && cd strider && git checkout tags/$STRIDER_VERSION && \
     # Install NPM deps
     npm install && \
     # Generate API Docs
@@ -29,5 +29,6 @@ ENV PATH /opt/strider/bin:$PATH
 
 COPY entry.sh /
 USER strider
+RUN mkdir -p /tmp/strider
 ENTRYPOINT ["/entry.sh"]
 CMD ["strider"]
