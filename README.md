@@ -1,12 +1,14 @@
 # Strider-CD Docker 
 
+[![Docker Repository on Quay.io](https://quay.io/repository/macropin/strider/status "Docker Repository on Quay.io")](https://quay.io/repository/macropin/strider)
+
 Possibly the best `Dockerfile` for Strider-CD
 
 - Uses [node](https://registry.hub.docker.com/_/node/) base image
 - Doesn't run as root
 - Thin Container. Uses linked [MongoDB](https://registry.hub.docker.com/_/mongo/) and [SMTP](https://registry.hub.docker.com/u/panubo/postfix/) containers for those services
-- Installs latest Strider-CD cleanly from Git sources.
-- Supports installing and upgrading plugins from the web UI
+- Installs latest Strider-CD cleanly from Git source
+- Supports installing and upgrading plugins from the web UI.
 
 ## Environment variables
 
@@ -24,11 +26,11 @@ If you want email notifications, configure an SMTP server (we recommend Mailgun 
 - `SMTP_PASS` - SMTP auth password e.g. "supersecret"
 - `SMTP_FROM` - Default FROM address e.g. "Strider noreply@stridercd.com" (default)
 
-Our docker initial config variables. If defined they will be used to create an admin account:
+Initial config variables. If these are defined then they will be used to create an admin account:
 
 - `STRIDER_ADMIN_EMAIL`
 - `STRIDER_ADMIN_PASSWORD`
 
 ## Status
 
-Generally a work in progress
+Stable.
