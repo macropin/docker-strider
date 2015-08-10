@@ -2,7 +2,9 @@
 
 [![Docker Repository on Quay.io](https://quay.io/repository/macropin/strider/status "Docker Repository on Quay.io")](https://quay.io/repository/macropin/strider)
 
-Possibly the best `Dockerfile` for Strider-CD
+Possibly the best `Dockerfile` for [Strider-CD](http://stridercd.com/).
+
+## Features
 
 - Uses [node](https://registry.hub.docker.com/_/node/) base image
 - Doesn't run as root
