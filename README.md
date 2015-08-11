@@ -1,6 +1,7 @@
 # Strider-CD Docker 
 
 [![Docker Repository on Quay.io](https://quay.io/repository/macropin/strider/status "Docker Repository on Quay.io")](https://quay.io/repository/macropin/strider)
+[![](https://badge.imagelayers.io/macropin/strider:latest.svg)](https://imagelayers.io/?images=macropin/strider:latest)
 
 Possibly the best `Dockerfile` for [Strider-CD](http://stridercd.com/).
 
