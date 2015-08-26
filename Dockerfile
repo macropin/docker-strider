@@ -13,7 +13,7 @@ VOLUME ["/data"]
 
 RUN cd /opt && \
     # Checkout into /opt/strider
-    git clone $STRIDER_GIT_SRC && cd strider && git checkout tags/$STRIDER_VERSION && \
+    git clone $STRIDER_GIT_SRC && cd strider && git checkout tags/$STRIDER_VERSION && rm -rf .git && \
     # Install NPM deps
     npm install && \
     # Generate API Docs
