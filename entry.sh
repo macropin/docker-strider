@@ -10,10 +10,10 @@ if [ -z "$DB_URI" ]; then
 fi
 
 # Update npm cache if no modules exist
-if [ ! -d "/data/node_modules" ]; then
+if [ ! -d "${STRIDER_HOME}/node_modules" ]; then
     echo "$(basename $0) >> Copying node_modules from cache..."
-    mkdir -p /data/node_modules
-    cp -r --preserve=mode,timestamps,links,xattr /opt/strider/node_modules.cache/* /data/node_modules/
+    mkdir -p ${STRIDER_HOME}/node_modules
+    cp -r --preserve=mode,timestamps,links,xattr ${STRIDER_SRC}/node_modules.cache/* ${STRIDER_HOME}/node_modules/
 fi
 
 # Create admin user if variables defined

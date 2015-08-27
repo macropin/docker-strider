@@ -4,28 +4,27 @@ MAINTAINER Andrew Cutler <andrew@panubo.io>
 
 EXPOSE 3000
 
-ENV STRIDER_GIT_SRC=https://github.com/Strider-CD/strider.git
-ENV STRIDER_VERSION=v1.7.2
+ENV STRIDER_VERSION=v1.7.2 STRIDER_GIT_SRC=https://github.com/Strider-CD/strider.git STRIDER_HOME=/data STRIDER_SRC=/opt/strider
 ENV NODE_ENV production
 
-RUN useradd --comment "Strider CD" --home /data strider && mkdir -p /data && chown strider:strider /data
-VOLUME ["/data"]
+RUN useradd --comment "Strider CD" --home ${STRIDER_HOME} strider && mkdir -p ${STRIDER_HOME} && chown strider:strider ${STRIDER_HOME}
+VOLUME [ "$STRIDER_HOME" ]
 
-RUN cd /opt && \
-    # Checkout into /opt/strider
-    git clone $STRIDER_GIT_SRC && cd strider && git checkout tags/$STRIDER_VERSION && rm -rf .git && \
+RUN mkdir -p $STRIDER_SRC && cd $STRIDER_SRC && \
+    # Checkout into $STRIDER_SRC
+    git clone $STRIDER_GIT_SRC . && git checkout tags/$STRIDER_VERSION && rm -rf .git && \
     # Install NPM deps
     npm install && \
     # Generate API Docs
     npm install apidoc && npm run gendocs && \
     # Create link to strider home dir so the modules can be used as a cache
-    mv node_modules node_modules.cache && ln -s /data/node_modules node_modules && \
+    mv node_modules node_modules.cache && ln -s ${STRIDER_HOME}/node_modules node_modules && \
     # Allow strider user to update .restart file
-    chown strider:strider /opt/strider/.restart && \
+    chown strider:strider ${STRIDER_SRC}/.restart && \
     # Cleanup Upstream cruft
     rm -rf /tmp/*
 
-ENV PATH /opt/strider/bin:$PATH
+ENV PATH ${STRIDER_SRC}/bin:$PATH
 
 COPY entry.sh /
 USER strider
