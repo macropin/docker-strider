@@ -1,4 +1,4 @@
-docker_tag 	= panubo/strider
+docker_tag 	= macropin/strider
 
 UNAME_S         := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
