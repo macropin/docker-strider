@@ -40,8 +40,8 @@ if [ -z "$DB_URI" ]; then
 fi
 
 # Extract port / host for testing below
-MONGO_HOST="$(echo ${url/$user@/} | cut -d/ -f1 | cut -d \: -f1)"
-MONGO_PORT="$(echo ${url/$user@/} | cut -d/ -f1 | cut -d \: -f2)"
+MONGO_HOST="$(echo ${DB_URI} | cut -d/ -f3 | cut -d \: -f1)"
+MONGO_PORT="$(echo ${DB_URI} | cut -d/ -f3 | cut -d \: -f2)"
 
 # Wait for Mongo to be available
 while ! exec 6<>/dev/tcp/${MONGO_HOST}/${MONGO_PORT}; do
