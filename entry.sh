@@ -4,6 +4,8 @@ set -e
 
 [ "$DEBUG" == 'true' ] && set -x
 
+echo ">> Strider Docker Image Starting..."
+
 # Check that MONGO variables are defined
 if [ -z "${MONGO_PORT_27017_TCP_ADDR}" -a -z "$DB_URI" ]; then
     echo "You must link this container with MONGO or define DB_URI"
@@ -40,8 +42,8 @@ if [ -z "$DB_URI" ]; then
 fi
 
 # Extract port / host for testing below
-MONGO_HOST="$(echo ${DB_URI} | cut -d/ -f3 | cut -d \: -f1)"
-MONGO_PORT="$(echo ${DB_URI} | cut -d/ -f3 | cut -d \: -f2)"
+MONGO_PORT=$(python -c "from urlparse import urlparse; print urlparse('$DB_URI').port")
+MONGO_HOST=$(python -c "from urlparse import urlparse; print urlparse('$DB_URI').hostname")
 
 # Wait for Mongo to be available
 while ! exec 6<>/dev/tcp/${MONGO_HOST}/${MONGO_PORT}; do
