@@ -4,7 +4,7 @@ MAINTAINER Andrew Cutler <andrew@panubo.io>
 
 EXPOSE 3000
 
-ENV STRIDER_VERSION=v1.7.4 STRIDER_GIT_SRC=https://github.com/Strider-CD/strider.git STRIDER_HOME=/data STRIDER_SRC=/opt/strider
+ENV STRIDER_VERSION=v1.7.5 STRIDER_GIT_SRC=https://github.com/Strider-CD/strider.git STRIDER_HOME=/data STRIDER_SRC=/opt/strider
 ENV NODE_ENV production
 
 RUN useradd --comment "Strider CD" --home ${STRIDER_HOME} strider && mkdir -p ${STRIDER_HOME} && chown strider:strider ${STRIDER_HOME}
