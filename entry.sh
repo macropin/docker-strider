@@ -4,7 +4,7 @@ set -e
 
 [ "$DEBUG" == 'true' ] && set -x
 
-echo ">> Strider Docker Image Starting..."
+echo ">> Strider Docker Image $STRIDER_VERSION Starting..."
 
 # Check that MONGO variables are defined
 if [ -z "${MONGO_PORT_27017_TCP_ADDR}" -a -z "$DB_URI" ]; then
