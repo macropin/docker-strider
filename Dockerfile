@@ -4,7 +4,7 @@ MAINTAINER Andrew Cutler <andrew@panubo.io>
 
 EXPOSE 3000
 
-ENV STRIDER_VERSION=v1.7.5 STRIDER_GIT_SRC=https://github.com/Strider-CD/strider.git STRIDER_HOME=/data STRIDER_SRC=/opt/strider
+ENV STRIDER_VERSION=master STRIDER_GIT_SRC=https://github.com/Strider-CD/strider.git STRIDER_HOME=/data STRIDER_SRC=/opt/strider
 ENV NODE_ENV production
 
 RUN useradd --comment "Strider CD" --home ${STRIDER_HOME} strider && mkdir -p ${STRIDER_HOME} && chown strider:strider ${STRIDER_HOME}
@@ -12,7 +12,9 @@ VOLUME [ "$STRIDER_HOME" ]
 
 RUN mkdir -p $STRIDER_SRC && cd $STRIDER_SRC && \
     # Checkout into $STRIDER_SRC
-    git clone $STRIDER_GIT_SRC . && git checkout tags/$STRIDER_VERSION && rm -rf .git && \
+    git clone $STRIDER_GIT_SRC . && \
+    [ "$STRIDER_VERSION" != 'master' ] && git checkout tags/$STRIDER_VERSION || git checkout master && \
+    rm -rf .git && \
     # Install NPM deps
     npm install && \
     # Generate API Docs
