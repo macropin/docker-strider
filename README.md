@@ -30,7 +30,7 @@ These are the base Strider variables. Docker links can be use in place of config
 - `SERVER_NAME` - Required; Address at which server will be accessible on the Internet. E.g. https://strider.example.com (note: no trailing slash)
 - `HOST` - Host where strider listens, optional (defaults to 0.0.0.0).
 - `PORT` - Port that strider runs on, optional (defaults to 3000).
-- `DB_URI` - MongoDB DB URI (or use `--link MONGO`)
+- `DB_URI` - MongoDB DB URI (or use `--link MONGO`), alternatively define both `MONGO_HOST` and `MONGO_PORT`
 - `HTTP_PROXY` - Proxy support, optional (defaults to null)
 If you want email notifications, configure an SMTP server (we recommend Mailgun for SMTP if you need a server - free account gives 200 emails / day):
 - `SMTP_HOST` - SMTP server hostname e.g. smtp.example.com

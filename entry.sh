@@ -7,9 +7,16 @@ set -e
 echo ">> Strider Docker Image $STRIDER_VERSION Starting..."
 
 # Check that MONGO variables are defined
-if [ -z "${MONGO_PORT_27017_TCP_ADDR}" -a -z "$DB_URI" ]; then
-    echo "You must link this container with MONGO or define DB_URI"
+if [ -z "${MONGO_PORT_27017_TCP_ADDR}" -a -z "${MONGO_HOST}" -a -z "$DB_URI" ]; then
+    echo "You must link this container with MONGO or define MONGO_HOST or DB_URI"
     exit 1
+fi
+
+# Alias MONGO variables
+if [ -z "$DB_URI" ]; then
+    export MONGO_HOST="${MONGO_PORT_27017_TCP_ADDR:-localhost}"
+    export MONGO_PORT="${MONGO_PORT_27017_TCP_PORT:-27017}"
+    echo "$(basename $0) >> Set MONGO_HOST=$MONGO_HOST, MONGO_PORT=$MONGO_PORT"
 fi
 
 # Check that SMTP variables are defined
@@ -22,7 +29,7 @@ fi
 if [ -z "$SMTP_HOST" ]; then
     export SMTP_HOST="${SMTP_PORT_587_TCP_ADDR:-localhost}"
     export SMTP_PORT="${SMTP_PORT_587_TCP_PORT:-587}"
-    echo "$(basename $0) >> Set SMTP_HOST=$SMTP_HOST, SMTP_PORT=$SMTP_PORT" 
+    echo "$(basename $0) >> Set SMTP_HOST=$SMTP_HOST, SMTP_PORT=$SMTP_PORT"
 fi
 
 # Wait for SMTP to be available
@@ -36,8 +43,8 @@ exec 6<&-
 
 # Create a DB_URI from linked container. See variables above.
 if [ -z "$DB_URI" ]; then
-    export DB_URI="mongodb://${MONGO_PORT_27017_TCP_ADDR:-localhost}:${MONGO_PORT_27017_TCP_PORT:-27017}/strider"
-    echo 'export DB_URI="mongodb://${MONGO_PORT_27017_TCP_ADDR:-localhost}:${MONGO_PORT_27017_TCP_PORT:-27017}/strider"' > $HOME/.bashrc
+    export DB_URI="mongodb://${MONGO_HOST:-${MONGO_PORT_27017_TCP_ADDR:-localhost}}:${MONGO_PORT:-${MONGO_PORT_27017_TCP_PORT:-27017}}/strider"
+    echo 'export DB_URI="mongodb://${MONGO_HOST:-${MONGO_PORT_27017_TCP_ADDR:-localhost}}:${MONGO_PORT:-${MONGO_PORT_27017_TCP_PORT:-27017}}/strider"' > $HOME/.bashrc
     echo "$(basename $0) >> Set DB_URI=$DB_URI"
 fi
 
