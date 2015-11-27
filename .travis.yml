@@ -1,6 +1,9 @@
 language: bash
 
-services: docker
+sudo: required
+
+services:
+  - docker
 
 script:
   - ./test.sh
