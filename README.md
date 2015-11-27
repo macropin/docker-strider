@@ -18,8 +18,8 @@ Possibly the best `Dockerfile` for [Strider-CD](https://github.com/Strider-CD/st
 The most straight forward usage if via Docker links: 
 
 ```
-docker run -d --name mongo mongodb
-docker run -d --name smtp panubo/postfix
+docker run -d --name mongo mongo
+docker run -d --name smtp -e MAILNAME=test panubo/postfix
 docker run -d --link mongo --link smtp macropin/strider
 ```
 
