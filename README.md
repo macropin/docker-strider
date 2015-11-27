@@ -2,6 +2,7 @@
 
 [![Docker Repository on Quay.io](https://quay.io/repository/macropin/strider/status "Docker Repository on Quay.io")](https://quay.io/repository/macropin/strider)
 [![](https://badge.imagelayers.io/macropin/strider:latest.svg)](https://imagelayers.io/?images=macropin/strider:latest)
+[![Build Status](https://travis-ci.org/macropin/docker-strider.svg?branch=master)](https://travis-ci.org/macropin/docker-strider)
 
 Possibly the best `Dockerfile` for [Strider-CD](https://github.com/Strider-CD/strider).
 
