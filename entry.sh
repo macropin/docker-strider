@@ -4,6 +4,11 @@ set -e
 
 [ "$DEBUG" == 'true' ] && set -x
 
+# Allow bypass initialisation
+if [ "$1" != "strider" ]; then
+   exec "$@"
+fi
+
 echo ">> Strider Docker Image $STRIDER_VERSION Starting..."
 
 # Check that MONGO variables are defined
