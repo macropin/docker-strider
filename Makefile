@@ -5,7 +5,7 @@ ifeq ($(UNAME_S),Linux)
     APP_HOST            := localhost
 endif
 ifeq ($(UNAME_S),Darwin)
-    APP_HOST            := $(shell boot2docker ip)
+    APP_HOST            := $(shell docker-machine ip)
 endif
 
 build:
