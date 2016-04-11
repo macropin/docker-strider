@@ -11,7 +11,6 @@ ENV STRIDER_VERSION=v1.7.7 STRIDER_GIT_SRC=https://github.com/Strider-CD/strider
 ENV NODE_ENV production
 
 
-RUN echo "strider:strider" | chpasswd && adduser strider sudo
 RUN useradd --comment "Strider CD" --home ${STRIDER_HOME} strider && mkdir -p ${STRIDER_HOME} && chown strider:strider ${STRIDER_HOME}
 VOLUME [ "$STRIDER_HOME" ]
 
@@ -33,6 +32,8 @@ RUN mkdir -p $STRIDER_SRC && cd $STRIDER_SRC && \
 
 ENV PATH ${STRIDER_SRC}/bin:$PATH
 
+RUN adduser strider sudo
+RUN echo "root:root" | chpasswd 
 
 COPY entry.sh /
 USER strider
