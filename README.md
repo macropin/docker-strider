@@ -1,6 +1,6 @@
 # Strider-CD Docker 
  
-[![Docker Repository on Quay.io](https://quay.io/repository/brownman/strider/status "Docker Repository on Quay.io")](https://quay.io/repository/macropin/strider)
+[![Docker Repository on Quay.io](https://quay.io/repository/brownman/strider/status "Docker Repository on Quay.io")](https://quay.io/repository/brownman/strider)
 [![](https://badge.imagelayers.io/macropin/strider:latest.svg)](https://imagelayers.io/?images=macropin/strider:latest)
 [![Build Status](https://travis-ci.org/brownman/docker-strider.svg?branch=master)](https://travis-ci.org/brownman/docker-strider)
 
