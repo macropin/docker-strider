@@ -1,6 +1,7 @@
 FROM node:latest
-
 MAINTAINER Andrew Cutler <andrew@panubo.io> 
+
+USER strider
 
 EXPOSE 3000
 
@@ -14,7 +15,7 @@ RUN mkdir -p $STRIDER_SRC && cd $STRIDER_SRC && \
     # Checkout into $STRIDER_SRC
     git clone $STRIDER_GIT_SRC . && \
     [ "$STRIDER_VERSION" != 'master' ] && git checkout tags/$STRIDER_VERSION || git checkout master && \
-    rm -rf .git && \
+  #  rm -rf .git && \ optional: switch to another code base
     # Install NPM deps
     npm install && \
     # Generate API Docs
@@ -29,6 +30,5 @@ RUN mkdir -p $STRIDER_SRC && cd $STRIDER_SRC && \
 ENV PATH ${STRIDER_SRC}/bin:$PATH
 
 COPY entry.sh /
-USER strider
 ENTRYPOINT ["/entry.sh"]
 CMD ["strider"]
