@@ -2,6 +2,7 @@ FROM node:latest
 MAINTAINER Andrew Cutler <andrew@panubo.io> 
 
 
+COPY entry.sh /
 EXPOSE 3000
 
 ENV STRIDER_VERSION=master STRIDER_GIT_SRC=https://github.com/Strider-CD/strider.git STRIDER_HOME=/data STRIDER_SRC=/data/opt/strider
@@ -29,6 +30,5 @@ RUN mkdir -p $STRIDER_SRC && cd $STRIDER_SRC && \
 
 ENV PATH ${STRIDER_SRC}/bin:$PATH
 
-COPY entry.sh /
 ENTRYPOINT ["/entry.sh"]
 CMD ["strider"]
