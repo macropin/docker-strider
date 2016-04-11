@@ -12,8 +12,8 @@ RUN mkdir -p $STRIDER_SRC
 ENV NODE_ENV production
 
 RUN useradd --comment "Strider CD" --home ${STRIDER_HOME} strider && mkdir -p ${STRIDER_HOME} && chown strider:strider ${STRIDER_HOME}
-USER strider
 CMD chown -R strider:strider /opt/strider
+USER strider
 
 VOLUME [ "$STRIDER_HOME" ]
 
