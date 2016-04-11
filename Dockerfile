@@ -12,8 +12,6 @@ RUN mkdir -p $STRIDER_SRC
 ENV NODE_ENV production
 
 RUN useradd --comment "Strider CD" --home ${STRIDER_HOME} strider && mkdir -p ${STRIDER_HOME} && chown strider:strider ${STRIDER_HOME}
-CMD chown -R strider:strider /opt/strider
-USER strider
 
 VOLUME [ "$STRIDER_HOME" ]
 
@@ -34,6 +32,9 @@ RUN cd $STRIDER_SRC && \
     rm -rf /tmp/*
 
 ENV PATH ${STRIDER_SRC}/bin:$PATH
+
+CMD chown -R strider:strider /opt/strider
+USER strider
 
 ENTRYPOINT ["/entry.sh"]
 CMD ["strider"]
