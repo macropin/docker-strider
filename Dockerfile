@@ -1,7 +1,6 @@
 FROM node:latest
 MAINTAINER Andrew Cutler <andrew@panubo.io> 
 
-USER strider
 
 EXPOSE 3000
 
@@ -9,6 +8,7 @@ ENV STRIDER_VERSION=master STRIDER_GIT_SRC=https://github.com/Strider-CD/strider
 ENV NODE_ENV production
 
 RUN useradd --comment "Strider CD" --home ${STRIDER_HOME} strider && mkdir -p ${STRIDER_HOME} && chown strider:strider ${STRIDER_HOME}
+USER strider
 VOLUME [ "$STRIDER_HOME" ]
 
 RUN mkdir -p $STRIDER_SRC && cd $STRIDER_SRC && \
