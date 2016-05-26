@@ -10,13 +10,13 @@ Possibly the best `Dockerfile` for [Strider-CD](https://github.com/Strider-CD/st
 
 - Uses [node](https://registry.hub.docker.com/_/node/) base image
 - Doesn't run as root
-- Thin Container. Uses linked [MongoDB](https://registry.hub.docker.com/_/mongo/) and [SMTP](https://registry.hub.docker.com/u/panubo/postfix/) containers for those services
+- Thin and Optimised Container. Uses linked [MongoDB](https://registry.hub.docker.com/_/mongo/) and [SMTP](https://registry.hub.docker.com/u/panubo/postfix/) containers for those services
 - Installs latest Strider-CD cleanly from Git source
 - Supports installing and upgrading plugins from the web UI.
 
 ## Usage
 
-The most straight forward usage if via Docker links: 
+The most straight forward usage is via Docker links: 
 
 ```
 docker run -d --name mongo mongo
