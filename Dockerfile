@@ -17,8 +17,6 @@ RUN mkdir -p $STRIDER_SRC && cd $STRIDER_SRC && \
     rm -rf .git && \
     # Install NPM deps
     npm install && \
-    # Generate API Docs
-    npm install apidoc && npm run gendocs && \
     # Create link to strider home dir so the modules can be used as a cache
     mv node_modules node_modules.cache && ln -s ${STRIDER_HOME}/node_modules node_modules && \
     # Allow strider user to update .restart file
