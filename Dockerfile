@@ -17,6 +17,8 @@ RUN mkdir -p $STRIDER_SRC && cd $STRIDER_SRC && \
     rm -rf .git && \
     # Install NPM deps
     npm install && \
+    # FIX: https://github.com/Strider-CD/strider/pull/1056
+    npm install morgan@1.5.0 &&\
     # Create link to strider home dir so the modules can be used as a cache
     mv node_modules node_modules.cache && ln -s ${STRIDER_HOME}/node_modules node_modules && \
     # Allow strider user to update .restart file
