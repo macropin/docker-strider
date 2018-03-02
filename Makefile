@@ -1,12 +1,7 @@
-docker_tag 	= macropin/strider
+.PHONY: build nocache bash test run clean
 
-UNAME_S         := $(shell uname -s)
-ifeq ($(UNAME_S),Linux)
-    APP_HOST            := localhost
-endif
-ifeq ($(UNAME_S),Darwin)
-    APP_HOST            := $(shell docker-machine ip)
-endif
+docker_tag 	= macropin/strider
+APP_HOST = localhost
 
 build:
 	docker build -t $(docker_tag) .
@@ -16,6 +11,9 @@ nocache:
 
 bash:
 	docker run --rm -it $(docker_tag) bash
+
+test:
+	./test.sh
 
 run:
 	$(eval MONGO_ID := $(shell docker run -p 3000:3000 --name strider-mongo -d mongo))
