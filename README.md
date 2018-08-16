@@ -1,6 +1,5 @@
 # Strider-CD Docker
 
-[![Docker Repository on Quay.io](https://quay.io/repository/macropin/strider/status "Docker Repository on Quay.io")](https://quay.io/repository/macropin/strider)
 [![Build Status](https://travis-ci.org/macropin/docker-strider.svg?branch=master)](https://travis-ci.org/macropin/docker-strider)
 
 Possibly the best `Dockerfile` for [Strider-CD](https://github.com/Strider-CD/strider).
@@ -20,7 +19,7 @@ The most straight forward usage is via Docker links:
 ```
 docker run -d --name mongo mongo
 docker run -d --name smtp -e MAILNAME=test panubo/postfix
-docker run -d --name strider -p 3000:3000 --link mongo --link smtp macropin/strider
+docker run -d --name strider -p 3000:3000 --link mongo --link smtp docker.io/macropin/strider:latest
 ```
 
 Then go point your browser at `http://localhost:3000`.
